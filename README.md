@@ -22,7 +22,7 @@ To be filled Later Soon
 - [ ] Full Arithmetic Circuits
 
 ## License
-GNU General Public License v3 (GPL-3.0) — See LICENSE file.
+CERN Open Hardware Licence Version 2 - Weakly Reciprocal — See LICENSE file.
 
 ## Author
 Manan Jain
