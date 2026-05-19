@@ -13,7 +13,7 @@ To be filled Later Soon
 
 ## Tools
 - **HDL:** SystemVerilog
-- **Simulation:** Xilinx Vivado
+- **Simulation:** TBA *(Vivado doesn't allow for switch level design and simulations)*
 - **Version Control:** Git
 
 ## Current Status
