@@ -4,6 +4,9 @@ Fundamental combinational circuits: adders, subtractors, and logic gates built f
 
 ## Contents
 
+### Multi-Function Circuits
+- **cla_adder_subtractor_parameterized.sv** — Parameterized (Configurable Width) CLA adder/subtractor (add/sub modes)
+
 ### Adders
 - **half_adder.sv** — 1-bit add without carry-in (Sum, Carry)
 - **full_adder.sv** — 1-bit add with carry-in (Sum, Carry-out)
@@ -13,13 +16,16 @@ Fundamental combinational circuits: adders, subtractors, and logic gates built f
 ### Subtractors
 - **half_subtractor.sv** — 1-bit subtract without borrow-in
 - **full_subtractor.sv** — 1-bit subtract with borrow-in
+- **cla_subtractor_parameterized.sv** - Configurable width CLA subtractor 
+
 
 ### Logic Gates (NAND-based)
 - **my_nand.sv** — Primitive NAND gate using cmos logic (2 pmos and 2 nmos)
 - **my_nand_not.sv** — NOT gate from NAND
 - **my_nand_and.sv** — AND gate from NAND
 - **my_nand_or.sv** — OR gate from NAND
-- **my_nand_xor.sv** — XOR gate from NAND
+- **my_nand_xor.sv** — XOR gate from NAND 
+- **my_nand_xnor.sv** — XNOR gate from NAND
 
 ## Design Notes
 All circuits in this folder are **combinational**.
@@ -31,10 +37,10 @@ Logic gates are built from NAND primitives to demonstrate gate-level design.
 3. All modules follow standard naming: outputs lowercase (sum, cout), inputs lowercase (a, b, cin) 
 
 ## Testing
-Each module has been simulated individually in Xilinx Vivado. **(Planned)**
+Each module has been simulated individually using testbenches. **(Planned)**
 *(Future: Unified testbench coming)*
 
-## Next Steps
-- [ ] Add testbench for all circuits
+## Next Steps 
+- [ ] Add other Combinational Circuit Primitives *(mux, demux, encoder, decoder, multiplier, divider, etc.)*
 - [ ] Add timing/area analysis
 - [ ] Add waveform screenshots
