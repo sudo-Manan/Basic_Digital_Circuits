@@ -1,6 +1,6 @@
 module my_nand (y, a, b);
     input logic a,b; 
-    output logic y;
+    output wire y;
     supply1 vdd; 
     supply0 vss;
     wire n_net;

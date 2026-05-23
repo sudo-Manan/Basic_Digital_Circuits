@@ -1,11 +1,11 @@
 module my_nor (y, a, b);
     input logic a,b; 
-    output logic y;
+    output wire y;
     supply1 vdd; 
     supply0 vss;
     wire n_net;
-    pmos p1(n_net,vdd,a);
-    pmos p2(y,n_net,b);
-    nmos n1(y,vss,a);
-    nmos n2(y,vss,b);
+    pmos pmos1(n_net,vdd,a);
+    pmos pmos2(y,n_net,b);
+    nmos nmos1(y,vss,a);
+    nmos nmos2(y,vss,b);
 endmodule
