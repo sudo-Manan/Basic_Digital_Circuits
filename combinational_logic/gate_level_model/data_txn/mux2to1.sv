@@ -4,6 +4,7 @@ module mux2to1 (
     input logic sel
 );
     logic sel_inv, w1, w2; 
+    
     not not_sel (sel_inv, sel);
     and and0 (w1, i0, sel_inv);
     and and1 (w2, i1, sel);
