@@ -1,0 +1,22 @@
+# === Simulation Build Outputs ===
+*.out
+*.vvp
+*.vcd
+*.log
+
+# === Yosys / Synthesis Artifacts ===
+*.dot
+*.json
+# If you generate gate-level netlists or reports dynamically:
+synth_*.v
+synth_*.sv
+
+# === VS Code Configurations ===
+.vscode/
+*.log
+
+# === OS/System Junk ===
+.DS_Store
+Thumbs.db
+
+

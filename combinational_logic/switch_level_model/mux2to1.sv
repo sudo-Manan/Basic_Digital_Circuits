@@ -1,11 +1,11 @@
 module mux2to1 (y, sel, i1, i0);
-    output logic y;
+    output wire y;
     input logic sel, i1, i0;
     
-    vsupply1 vdd;
-    vsupply0 vss;
+    supply1 vdd;
+    supply0 vss;
 
-    logic not_sel, w1, w1n, w2, w2n, w3n;
+    wire not_sel, w1, w1n, w2, w2n, w3n;
 
     pmos p_not (not_sel, vdd, sel);
     nmos n_not (not_sel, vss, sel);
