@@ -9,7 +9,7 @@ arithmetic_logic/
 ├── half_adder.sv                               # ha(carry, sum, a, b)
 ├── ha_tb.sv                                    # testbench
 ├── full_adder.sv                               # fa(carry_out, sum, carry_in, a, b)
-├── ha_tb.sv                                    # testbench
+├── fa_tb.sv                                    # testbench
 ├── half_subtractor.sv                          # hs(diff, borrow, a, b)
 ├── hs_tb.sv                                    # testbench
 ├── full_subtractor.sv                          # fs(diff, borrow_out, borrow_in, a, b)
