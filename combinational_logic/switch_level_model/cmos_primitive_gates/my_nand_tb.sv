@@ -4,7 +4,7 @@ module my_nand_tb;
 
     my_nand dut (.y(y), .a(a), .b(b));
 
-    //use with icarus verilog and terosHDL on vs code to generate output vvp and wavefo
+    //use with icarus verilog and terosHDL on vs code to generate output vvp and waveform
     // initial begin
     //     $dumpfile("my_nand_tb.vcd");
     //     $dumpvars(0, my_nand_tb);

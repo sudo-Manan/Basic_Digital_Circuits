@@ -4,7 +4,7 @@ module my_xor_tb;
 
     my_xor dut(.y(y), .a(a), .b(b));
 
-    //use with icarus verilog and terosHDL on vs code to generate output vvp and wavefo
+    //use with icarus verilog and terosHDL on vs code to generate output vvp and waveform vcd files
     // initial begin
     //     $dumpfile("my_xor_tb.vcd");
     //     $dumpvars(0, my_xor_tb);

@@ -3,7 +3,7 @@ module my_buff_tb;
     wire y;
     my_buff dut(.y(y), .a(a));
 
-    //use with icarus verilog and terosHDL on vs code to generate output vvp and wavefo
+    //use with icarus verilog and terosHDL on vs code to generate output vvp and waveform
     // initial begin
     //     $dumpfile("my_buff_tb.vcd");
     //     $dumpvars(0, my_buff_tb);
