@@ -9,6 +9,7 @@ arithmetic_logic/
 ├── half_adder.sv                               # ha(carry, sum, a, b)
 ├── ha_tb.sv                                    # testbench
 ├── full_adder.sv                               # fa(carry_out, sum, carry_in, a, b)
+├── ha_tb.sv                                    # testbench
 ├── half_subtractor.sv                          # hs(diff, borrow, a, b)
 ├── hs_tb.sv                                    # testbench
 ├── full_subtractor.sv                          # fs(diff, borrow_out, borrow_in, a, b)
@@ -59,8 +60,8 @@ When m=0 (addition):
 
 **Ripple Carry ADD/SUB Testbench Coverage:**
 - **2,048 vectors:** All combinations of a, b ∈ [0,15], cin ∈ {0,1}, m ∈ {0,1}
-- **Addition mode (m=0):** 1,024 vectors — ✓ Verified
-- **Subtraction mode (m=1):** 1,024 vectors — ✓ Verified
+- **Addition mode (m=0):** 1,024 vectors - Verified
+- **Subtraction mode (m=1):** 1,024 vectors - Verified
 - **Pass rate:** 100%
 
 **How to Run:**
@@ -73,7 +74,7 @@ vvp output.vvp
 
 ## Design Notes
 
-- **Gate-level:** AND, OR, NOT, XOR primitives only
+- **Gate-level:** AND, OR, NOT, XOR primitives used
 - **Parameterized:** Scale WIDTH for 4, 8, 16, 32+ bits
 - **Combinational:** No state, pure combinatorial logic
 - **Synthesizable:** Verified with Yosys
