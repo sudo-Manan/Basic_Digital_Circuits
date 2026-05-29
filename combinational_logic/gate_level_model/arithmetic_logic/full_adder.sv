@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module fa (carry_out, sum, carry_in, a, b);
     input logic a, b;
     input logic carry_in;

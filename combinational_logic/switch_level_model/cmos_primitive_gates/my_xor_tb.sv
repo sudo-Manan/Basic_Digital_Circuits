@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module my_xor_tb;
     logic a, b;
     wire y;

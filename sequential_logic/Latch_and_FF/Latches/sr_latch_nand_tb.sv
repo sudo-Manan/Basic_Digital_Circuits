@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module sr_latch_nand_tb;
     logic s, r;
     logic q, q_inv; 

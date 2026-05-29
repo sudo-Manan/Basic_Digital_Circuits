@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module fs (diff, borrow_out, borrow_in, a, b);
     input logic a, b;
     input logic borrow_in;

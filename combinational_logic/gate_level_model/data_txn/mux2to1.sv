@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module mux2to1 (
     output logic y,
     input logic i0, i1,

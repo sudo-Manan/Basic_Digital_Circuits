@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module my_xnor (y, a, b);
     input logic a,b; 
     output wire y;

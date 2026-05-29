@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module ha (carry, sum, a, b);
     input logic  a, b;
     output logic sum;

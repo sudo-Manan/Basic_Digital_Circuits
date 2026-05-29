@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module bin2gray #(parameter WIDTH = 4) (gray, bin);
     input logic [WIDTH-1:0] bin;
     output logic [WIDTH-1:0] gray;

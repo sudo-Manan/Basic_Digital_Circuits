@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module sr_latch_nor (q, q_bar, s, r);
     input logic s, r;
     output logic q, q_bar;
@@ -8,20 +10,20 @@ module sr_latch_nor (q, q_bar, s, r);
                 //Hold
             end 
             2'b01: begin 
-                q <= 1'b0;     // Reset
-                q_bar <= 1'b1;
+                q = 1'b0;     // Reset
+                q_bar = 1'b1;
             end 
             2'b10: begin 
-                q <= 1'b1; 
+                q = 1'b1; 
                 q_bar = 1'b0;// Set 
             end
             2'b11: begin
-                q <= 1'bx; // Invalid state
-                q_bar <= 1'bx;
+                q = 1'bx; // Invalid state
+                q_bar = 1'bx;
             end
             default: begin 
-                q <= 1'bx; // Undefined state
-                q_bar <= 1'bx;
+                q = 1'bx; // Undefined state
+                q_bar = 1'bx;
             end
         endcase
     end

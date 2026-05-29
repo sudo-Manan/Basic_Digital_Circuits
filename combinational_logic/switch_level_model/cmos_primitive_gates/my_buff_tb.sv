@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module my_buff_tb;
     logic a;
     wire y;

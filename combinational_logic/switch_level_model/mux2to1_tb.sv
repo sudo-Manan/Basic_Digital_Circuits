@@ -1,6 +1,8 @@
+`timescale 1ns/1ps
+
 module mux2to1_tb ();
     logic i0, i1, sel;
-    logic y;
+    wire y;
     
     mux2to1 dut (.y(y), .i0(i0), .i1(i1), .sel(sel));
     

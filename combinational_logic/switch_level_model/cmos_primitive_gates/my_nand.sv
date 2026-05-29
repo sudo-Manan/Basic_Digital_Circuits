@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 module my_nand (y, a, b);
     input logic a,b; 
     output wire y;

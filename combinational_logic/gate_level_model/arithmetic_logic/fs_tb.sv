@@ -1,8 +1,16 @@
+`timescale 1ns/1ps
+
 module fs_tb ();
     logic a, b, bin;
     logic diff, bout;
 
     fs dut (.diff(diff), .borrow_out(bout), .borrow_in(bin), .a(a), .b(b));
+
+    //use with icarus verilog and terosHDL on vs code to generate output vvp and waveform
+    // initial begin
+    //     $dumpfile("fs_tb.vcd");
+    //     $dumpvars(0, fs_tb);
+    // end
 
     initial begin
         $monitor("a = %b, b = %b, bin = %b, diff = %b, bout = %b", a, b, bin, diff, bout);

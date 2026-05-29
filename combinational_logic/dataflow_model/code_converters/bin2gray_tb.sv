@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module bin2gray_tb;
     parameter WIDTH = 4;
     logic [WIDTH-1:0] bin_in;

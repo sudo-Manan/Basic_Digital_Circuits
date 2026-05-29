@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module hs (diff, borrow, a, b);
     input logic a, b;
     output logic diff;

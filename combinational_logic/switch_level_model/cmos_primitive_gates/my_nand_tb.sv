@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module my_nand_tb;
     logic a, b;
     wire y;

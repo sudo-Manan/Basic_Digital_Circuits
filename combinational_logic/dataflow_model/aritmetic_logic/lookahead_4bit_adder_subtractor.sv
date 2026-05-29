@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module cla_add_sub_4bit (
     output logic [3:0] s,
     output logic cout,

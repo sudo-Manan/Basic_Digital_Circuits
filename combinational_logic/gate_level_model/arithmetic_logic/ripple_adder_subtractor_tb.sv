@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module ripple_carry_add_sub_tb;
     parameter WIDTH = 4;
     logic m;

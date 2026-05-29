@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module my_buff (y, a);
     input logic a; 
     output wire y;

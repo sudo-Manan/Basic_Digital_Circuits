@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module top_tb;
     logic a, b;
     logic and_out, or_out, not_out, xor_out;

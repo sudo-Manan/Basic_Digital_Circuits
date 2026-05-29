@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module ripple_carry_add_sub #(parameter WIDTH = 4) (s, cout, m, a, b, cin);
   input logic m;
   input logic [WIDTH-1:0] a, b;
