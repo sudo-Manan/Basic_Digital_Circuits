@@ -19,12 +19,13 @@ module cla_add_sub_4bit (
     assign p = a ^ b_inv;
     assign g = a & b_inv;
 
-    //lookahead logic
+    //lookahead logic 
     assign c[0] = m ? 1'b1 : cin;
     assign c[1] = g[0] | (p[0] & c[0]);
-    assign c[2] = g[1] | (p[1] & g[0] | (p[0] & c[0]));
-    assign c[3] = g[2] | (p[2] & g[1] | (p[1] & g[0] | (p[0] & c[0])));
-    assign c[4] = g[3] | (p[3] & g[2] | (p[2] & g[1] | (p[1] & g[0] | (p[0] & c[0]))));
+    assign c[2] = g[1] | (p[1] & g[0]) | (p[1] & p[0] & c[0]);
+    assign c[3] = g[2] | (p[2] & g[1]) | (p[2] & p[1] & g[0]) | (p[2] & p[1] & p[0] & c[0]);
+    assign c[4] = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]) | (p[3] & p[2] & p[1] & p[0] & c[0]);
+
     
     // Calculate sum
     assign s = p ^ c[3:0];
