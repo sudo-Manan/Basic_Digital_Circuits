@@ -10,6 +10,7 @@ module sr_ff (q, q_bar, clk, s, r);
             2'b01: q <= 1'b0;   // reset
             2'b10: q <= 1'b1;   // set
             2'b11: q <= 1'bx;   // invalid
+            default: q <= q;   // hold
         endcase
     end
     

@@ -6,10 +6,10 @@ module d_latch_tb ();
 
     d_latch dut (.q(q), .q_bar(q_inv), .d(d), .en(en)); 
 
-    initial begin
-        $dumpfile("d_latch_tb.vcd");
-        $dumpvars(0, d_latch_tb);
-    end
+    // initial begin
+    //     $dumpfile("d_latch_tb.vcd");
+    //     $dumpvars(0, d_latch_tb);
+    // end
 
    initial begin 
         $monitor("en=%d|d=%d|q=%d|q_inv=%d",en,d,q,q_inv);

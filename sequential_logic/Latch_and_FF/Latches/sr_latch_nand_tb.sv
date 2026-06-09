@@ -7,10 +7,10 @@ module sr_latch_nand_tb;
     sr_latch_nand dut (.q(q), .q_bar(q_inv), .s(s), .r(r)); 
 
     //use with icarus verilog and terosHDL on vs code to generate output vvp and waveform
-    initial begin
-        $dumpfile("sr_latch_nand_tb.vcd");
-        $dumpvars(0, sr_latch_nand_tb);
-    end
+    // initial begin
+    //     $dumpfile("sr_latch_nand_tb.vcd");
+    //     $dumpvars(0, sr_latch_nand_tb);
+    // end
 
     initial begin 
         $monitor("s=%d|r=%d|q=%d|q_inv=%d",s,r,q,q_inv);

@@ -3,6 +3,7 @@
 *.vvp
 *.vcd
 *.log
+*.txt
 
 # === Yosys / Synthesis Artifacts ===
 *.dot
