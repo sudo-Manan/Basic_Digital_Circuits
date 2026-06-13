@@ -96,7 +96,7 @@ Basic_Digital_Circuits/
 - [ ] T Flip-Flop
 
 ### Planned (This Week)
-- [ ] Gray-to-Binary converter
+- [x] Gray-to-Binary converter
 - [ ] Missing testbenches (mux4to1, mux8to1 behavioral/dataflow)
 - [ ] Start building Registers
 - [ ] Start building Counters 
