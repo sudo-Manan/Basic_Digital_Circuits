@@ -92,12 +92,13 @@ Basic_Digital_Circuits/
 #### Flip-Flops
 - [x] D Flip-Flop
 - [x] SR Flip-Flop
-- [ ] JK Flip-Flop
+- [x] JK Flip-Flop
 - [ ] T Flip-Flop
 
 ### Next Steps
 - [x] Gray-to-Binary converter
 - [x] Missing testbenches (mux2to1, mux4to1 behavioral and dataflow)
+- [x] Edge Detectors
 - [ ] Start building Registers
 - [ ] Start building Counters 
 - [ ] FSM (Moore / Mealy example)
