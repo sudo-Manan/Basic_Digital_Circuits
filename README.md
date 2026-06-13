@@ -95,13 +95,14 @@ Basic_Digital_Circuits/
 - [ ] JK Flip-Flop
 - [ ] T Flip-Flop
 
-### Planned (This Week)
+### Next Steps
 - [x] Gray-to-Binary converter
-- [ ] Missing testbenches (mux4to1, mux8to1 behavioral/dataflow)
+- [x] Missing testbenches (mux2to1, mux4to1 behavioral and dataflow)
 - [ ] Start building Registers
 - [ ] Start building Counters 
 - [ ] FSM (Moore / Mealy example)
 - [ ] Tri-state buffer
+- [ ] Missing testbenches (mux8to1 behavioral and dataflow)
 
 ---
 
