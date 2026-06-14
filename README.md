@@ -75,8 +75,8 @@ Basic_Digital_Circuits/
 
 #### Dataflow
 - [x] 4-bit CLA Adder-Subtractor (`m=0` add, `m=1` subtract, 2's complement)
-- [x] Binary-to-Gray converter (parameterized)
-- [ ] Gray-to-Binary converter
+- [x] Binary-to-Gray converter
+- [x] Gray-to-Binary converter
 - [x] 2:1, 4:1, 8:1 MUX (parameterized width)
 
 #### Behavioral
@@ -99,6 +99,7 @@ Basic_Digital_Circuits/
 - [x] Gray-to-Binary converter
 - [x] Missing testbenches (mux2to1, mux4to1 behavioral and dataflow)
 - [x] Edge Detectors
+- [ ] Update resets to active low
 - [ ] Start building Registers
 - [ ] Start building Counters 
 - [ ] FSM (Moore / Mealy example)
