@@ -4,12 +4,12 @@ module edge_detector (pulse, signal, clk, rst);
     output logic pulse;
     input logic signal;
     input logic clk;
-    input logic rst;
+    input logic rst_n;
 
     logic ff1, ff2;
     
-    always_ff @(posedge clk or posedge rst) begin
-        if (rst) begin
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
             ff1 <= 1'b0;
             ff2 <= 1'b0;
         end else begin

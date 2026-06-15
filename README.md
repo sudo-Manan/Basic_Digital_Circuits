@@ -99,7 +99,8 @@ Basic_Digital_Circuits/
 - [x] Gray-to-Binary converter
 - [x] Missing testbenches (mux2to1, mux4to1 behavioral and dataflow)
 - [x] Edge Detectors
-- [ ] Update resets to active low
+- [x] Magnitude Comparator (testbench pending)
+- [ ] Update resets for all logics to active low
 - [ ] Start building Registers
 - [ ] Start building Counters 
 - [ ] FSM (Moore / Mealy example)
