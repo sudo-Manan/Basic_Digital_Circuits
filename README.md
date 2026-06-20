@@ -71,16 +71,22 @@ Basic_Digital_Circuits/
 - [x] Half Adder, Full Adder
 - [x] Half Subtractor, Full Subtractor
 - [x] Ripple Carry Adder-Subtractor (parameterized, N-bit)
-- [x] 2:1 MUX
+- [x] 2:1 MUX, 1:2 DEMUX
 
 #### Dataflow
 - [x] 4-bit CLA Adder-Subtractor (`m=0` add, `m=1` subtract, 2's complement)
+- [x] Magnitude Comparator (parameterized inputs width)
 - [x] Binary-to-Gray converter
 - [x] Gray-to-Binary converter
 - [x] 2:1, 4:1, 8:1 MUX (parameterized width)
+- [x] 4:1 DEMUX
+- [x] 3:8 Decoder 
 
 #### Behavioral
+- [x] Magnitude Comparator
 - [x] 2:1, 4:1, 8:1 MUX (parameterized width, `always_comb` + `case`)
+- [x] 1:8 DEMUX
+- [x] 8:3 Priority Encoder
 
 ### Sequential Logic
 
@@ -93,7 +99,7 @@ Basic_Digital_Circuits/
 - [x] D Flip-Flop
 - [x] SR Flip-Flop
 - [x] JK Flip-Flop
-- [ ] T Flip-Flop
+- [x] T Flip-Flop
 
 #### Registers
 - [x] N-bit Register
@@ -105,10 +111,6 @@ Basic_Digital_Circuits/
 - [x] Negative Edge Detector
 
 ### Next Steps
-- [x] Missing testbenches (mux2to1, mux4to1 behavioral and dataflow)
-- [x] Edge Detectors
-- [x] Magnitude Comparator (testbench pending)
-- [ ] Update resets for all logics to active low
 - [ ] Universal Shift Register
 - [ ] Start building Counters 
 - [ ] FSM (Moore / Mealy example)
