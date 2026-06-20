@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 
 //case based design
-module demux1to8 (y, in, sel);
+module demux1to8_alt (y, in, sel);
     output logic [7:0] y;
     input logic in;
     input logic [2:0] sel;

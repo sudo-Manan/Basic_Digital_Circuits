@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module mag_comp #(parameter WIDTH = 4) (a, b, a_gt_b, eq, a_lt_b);
+module mag_comp_alt #(parameter WIDTH = 4) (a, b, a_gt_b, eq, a_lt_b);
     input logic [WIDTH-1:0] a, b;
     output logic a_gt_b, eq, a_lt_b;
 

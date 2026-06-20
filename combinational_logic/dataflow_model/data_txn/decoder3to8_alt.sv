@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module decoder3to8 (
+module decoder3to8_alt (
     input  logic [2:0] a,
     output wire [7:0] y
 ); 

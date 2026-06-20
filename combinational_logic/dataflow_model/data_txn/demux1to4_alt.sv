@@ -2,7 +2,7 @@
 
 //logic based design of demux1to4: uses more logic gates
     //used yosys -p "read_verilog -sv demux1to4.sv; synth; opt -full; stat" to verify the number of logic gates used in the design, which is 4 AND gates and 4 NOT gates
-module demux1to4 (y, in, sel);
+module demux1to4_alt (y, in, sel);
     input logic in;
     output logic [3:0] y;
     input logic [1:0] sel;

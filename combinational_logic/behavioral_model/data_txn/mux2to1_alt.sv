@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module mux2to1 (
+module mux2to1_alt (
     output logic y,
     input logic a, b,
     input logic sel
