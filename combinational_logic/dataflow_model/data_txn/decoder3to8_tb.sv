@@ -6,6 +6,12 @@ module decoder3to8_tb;
 
     decoder3to8 dut (.sel(sel), .y(y));
 
+    //use with icarus verilog and terosHDL on vs code to generate output vvp and waveform
+    // initial begin
+    //     $dumpfile("decoder3to8_tb.vcd");
+    //     $dumpvars(0, decoder3to8_tb);
+    // end
+
     initial begin
         $monitor("sel: %b | y: %d", sel, y);
         #10;

@@ -12,6 +12,7 @@ module top_tb;
     my_nor nor_gate(.y(nor_out), .a(a), .b(b));
     my_xnor xnor_gate(.y(xnor_out), .a(a), .b(b));
     my_buff buff_gate(.y(buff_out), .a(a));
+    
     //use with icarus verilog and terosHDL on vs code to generate output vvp and waveform
     // initial begin
     //     $dumpfile("top_tb.vcd");

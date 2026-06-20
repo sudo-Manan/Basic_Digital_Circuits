@@ -115,7 +115,7 @@ Basic_Digital_Circuits/
 - [ ] Start building Counters 
 - [ ] FSM (Moore / Mealy example)
 - [ ] Tri-state buffer
-- [ ] Missing testbenches
+- [ ] Missing testbenches (edge detectors, d_ff, t_ff)
 
 ---
 

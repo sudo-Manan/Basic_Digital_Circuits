@@ -13,6 +13,12 @@ module mux8to1_tb;
         .sel(sel)
     );
 
+    //use with icarus verilog and terosHDL on vs code to generate output vvp and waveform
+    // initial begin
+    //     $dumpfile("mux8to1_tb.vcd");
+    //     $dumpvars(0, mux8to1_tb);
+    // end
+
     initial begin
         // Initialize input signals
         in_sig[0] = 4'b0001; // a

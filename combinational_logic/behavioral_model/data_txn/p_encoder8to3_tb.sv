@@ -8,6 +8,12 @@ module p_encoder8to3_tb;
     // Instantiate the encoder
     p_encoder8to3 uut (.in(in), .y(y), .valid(valid));
 
+    //use with icarus verilog and terosHDL on vs code to generate output vvp and waveform
+    // initial begin
+    //     $dumpfile("p_encoder8to3_tb.vcd");
+    //     $dumpvars(0, p_encoder8to3_tb);
+    // end
+
     initial begin
         $monitor("Input: %d, Output: %d, Valid: %b", in, y, valid);
         #10;

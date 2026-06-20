@@ -16,15 +16,17 @@ module mag_comp #(parameter WIDTH = 4) (a, b, a_gt_b, eq, a_lt_b);
                 eq = 1;
                 a_lt_b = 0;
             end
-            default: begin 
+            (a < b): begin
                 a_gt_b = 0;
                 eq = 0;
                 a_lt_b = 1;
             end
+            default: begin
+                a_gt_b = 0;
+                eq = 0;
+                a_lt_b = 0;
+            end
         endcase
     end
-
-    //used default to cover a<b case, but can also be done with an explicit case statement for a<b
-
 
 endmodule
