@@ -95,13 +95,21 @@ Basic_Digital_Circuits/
 - [x] JK Flip-Flop
 - [ ] T Flip-Flop
 
+#### Registers
+- [x] N-bit Register
+- [ ] Universal Shift Register
+
+#### Edge Detector
+- [x] Edge Detector (both rising and falling edges)
+- [x] Positive Edge Detector
+- [x] Negative Edge Detector
+
 ### Next Steps
-- [x] Gray-to-Binary converter
 - [x] Missing testbenches (mux2to1, mux4to1 behavioral and dataflow)
 - [x] Edge Detectors
 - [x] Magnitude Comparator (testbench pending)
 - [ ] Update resets for all logics to active low
-- [ ] Start building Registers
+- [ ] Universal Shift Register
 - [ ] Start building Counters 
 - [ ] FSM (Moore / Mealy example)
 - [ ] Tri-state buffer
