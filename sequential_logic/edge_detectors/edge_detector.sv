@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module edge_detector (pulse, signal, clk, rst);
+module edge_detector (pulse, signal, clk, rst_n);
     output logic pulse;
     input logic signal;
     input logic clk;

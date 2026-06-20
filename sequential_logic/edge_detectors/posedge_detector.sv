@@ -20,6 +20,6 @@ module posedge_detector (risedge, signal, clk, rst_n);
     end
     
     assign risedge = ff1 & ~ff2;   // Rising edge only
-    // assign risedge = ~ff1 & ff2; // Falling edge only
-    // assign risedge = ff1 ^ ff2;  // Both edges
+    // assign falledge = ~ff1 & ff2; // Falling edge only
+    // assign edge = ff1 ^ ff2;  // Both edges
 endmodule

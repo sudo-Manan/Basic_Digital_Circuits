@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module la_add_sub_tb;
+module la_add_sub_4bit_tb;
     parameter WIDTH = 4;
     logic m;
     logic [WIDTH-1:0] a, b;
@@ -8,7 +8,7 @@ module la_add_sub_tb;
     logic [WIDTH-1:0] s;
     logic cout;
 
-    cla_add_sub_4bit dut (.s(s), .cout(cout), .m(m), .a(a), .b(b), .cin(cin));
+    la_add_sub_4bit dut (.s(s), .cout(cout), .m(m), .a(a), .b(b), .cin(cin));
 
     //use with icarus verilog and terosHDL on vs code to generate output vvp and waveform
     // initial begin 

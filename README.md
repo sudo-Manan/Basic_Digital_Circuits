@@ -115,7 +115,7 @@ Basic_Digital_Circuits/
 - [ ] Start building Counters 
 - [ ] FSM (Moore / Mealy example)
 - [ ] Tri-state buffer
-- [ ] Missing testbenches (mux8to1 behavioral and dataflow)
+- [ ] Missing testbenches
 
 ---
 

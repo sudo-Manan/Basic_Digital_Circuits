@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module cla_add_sub_4bit (
+module la_add_sub_4bit (
     output logic [3:0] s,
     output logic cout,
     input logic m,    // mode: 0=add, 1=subtract
