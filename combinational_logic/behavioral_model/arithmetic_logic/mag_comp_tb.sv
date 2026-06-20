@@ -9,8 +9,8 @@ module mag_comp_tb;
 
     initial begin
         // Test case 1: a > b
-        a = 4'b10   //1010; // 10 in decimal
-        b = 4'b0110; // 6 in decimal
+        a = 4'd10;   //1010; // 10 in decimal
+        b = 4'd6;   //0110; // 6 in decimal
         #10; // Wait for 10 time units
         $display("Test case 1: a = %b, b = %b, a_gt_b = %b, eq = %b, a_lt_b = %b", a, b, a_gt_b, eq, a_lt_b);
 
