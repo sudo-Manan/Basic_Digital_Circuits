@@ -4,6 +4,7 @@
 *.vcd
 *.log
 *.txt
+combinational_logic/behavioral_model/arithmetic_logic/ALU/Old_Design_8bit/
 
 # === Yosys / Synthesis Artifacts ===
 *.dot
