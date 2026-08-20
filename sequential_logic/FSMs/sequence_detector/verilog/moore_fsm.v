@@ -1,6 +1,9 @@
-`timescale 1ns/1ps
+`timescale 1ns/10ps
 
-module mealy_fsm(
+//sequence detector for "1011" using Moore FSM
+//asynchronous reset, y == 0, ps = s0 when rst_n == 0
+//output is '1' when sequence is detected, otherwise '0'
+module moore_fsm(
     input clk,
     input rst_n,
     input in_bit,
@@ -8,8 +11,8 @@ module mealy_fsm(
 );
 
     // State encoding
-    parameter S0 = 2'b00, S1 = 2'b01, S2 = 2'b10, S3 = 2'b11;
-    reg [1:0] present_state, next_state;
+    parameter S0 = 3'b000, S1 = 3'b001, S2 = 3'b010, S3 = 3'b011, S4 = 3'b100;
+    reg [2:0] present_state, next_state;
 
 
     always @(posedge clk or negedge rst_n) begin
@@ -20,10 +23,7 @@ module mealy_fsm(
     end
 
     always @(*) begin
-        // Default values
         next_state = present_state;
-        y = 1'b0;
-
         case (present_state)
             S0: begin
                 if (in_bit)
@@ -40,17 +40,31 @@ module mealy_fsm(
             S2: begin
                 if (in_bit)
                     next_state = S3; 
-                else begin
+                else 
                     next_state = S0; // Move to S0 on '0'
-                end
             end
             S3: begin
-                if (in_bit) begin
-                    next_state = S1; // Move to S1 on '1'
-                    y = 1'b1; // Output '1' when sequence '1011' is detected
-                end
+                if (in_bit)
+                    next_state = S4; // Move to S4 on '1'
                 else
                     next_state = S2; // Move to S2 on '0'
+            end
+            S4: begin
+                if (in_bit)
+                    next_state = S1; // Move to S1 on '1'
+                else
+                    next_state = S2; // Move to S2 on '0'
+            end
+        endcase
+    end
+
+    always @(*) begin
+        // Default output
+        y = 1'b0;
+        case (present_state)
+            S4: y = 1'b1; // Output '1' when in state S4 (sequence '1011' detected)
+            default: begin
+                y = 1'b0; // Output '0' for all other states
             end
         endcase
     end
