@@ -5,7 +5,6 @@ module mux4to1_param #(parameter WIDTH = 1) (
     input logic [WIDTH-1:0] in0, in1, in2, in3,
     input logic [1:0] sel
 );
-    // d is msb and a is lsb
 
     always_comb begin
         case (sel)
