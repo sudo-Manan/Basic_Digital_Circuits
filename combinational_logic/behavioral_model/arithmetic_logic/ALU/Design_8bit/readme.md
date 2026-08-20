@@ -46,11 +46,12 @@ alu8
 | `110` | SUB | `a - b` | Unsigned subtraction; `cout=0` means borrow occurred |
 | `111` | SLT | `a < b ? 1 : 0` | Unsigned set-less-than; `y[0]=1` if `a < b`, `y[7:1]=0` always |
 
-<img src="images/alu_8bit.jpg" alt="Description" style="
+![8-bit ALU](images/alu_8bit.jpg)
+<!-- <img src="images/alu_8bit.jpg" alt="Description" style="
   max-width: 100%; 
   height: auto;
   object-fit: contain; 
-">
+"> -->
 
 **Note on `cout` semantics:** follows ARM/standard 2's-complement convention - `cout=1` means no borrow (a ≥ b), `cout=0` means borrow occurred (a < b). This is the inverse of x86's carry/borrow flag.
 
@@ -81,24 +82,27 @@ sel[2]=1  →  SUB-mode group  (AND-NOT, OR-NOT, SUB, SLT)
 assign P = &p;   // group propagate: true when all bits propagate
 assign G = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]);
 ```
-<img src="images/cla4_schem.jpg" alt="Description" style="
+![4-bit CLA](images/cla4_schem.jpg)
+
+<!-- <img src="images/cla4_schem.jpg" alt="Description" style="
   max-width: 100%; 
   height: auto;
   object-fit: contain; 
   transform: rotate(90deg);
-">
+"> -->
 
 `cla8` uses these to compute the inter-nibble carry directly, without waiting for `cout` of the lower block to ripple:
 
 ```systemverilog
 assign c4_u7to4 = g0 | (p0 & cin);
 ```
-<img src="images/cla8_schem2.jpg" alt="Description" style="
+![8-bit CLA](images/cla8_schem2.jpg)
+<!-- <img src="images/cla8_schem2.jpg" alt="Description" style="
   max-width: 100%; 
   height: auto;
   object-fit: contain; 
   transform: rotate(90deg);
-">
+"> -->
 This is the correct two-level CLA structure. Chaining via raw `cout` and leaving each block's internal `cin` logic untouched would silently break subtraction whenever the lower nibble underflows, because the upper block would re-force its own carry-in instead of accepting the real borrow from below. The group P/G approach avoids this entirely.
 
 ### 3. SLT via ~cout
