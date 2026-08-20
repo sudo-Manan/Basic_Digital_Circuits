@@ -1,8 +1,9 @@
-# ALU — 8-bit Arithmetic Logic Unit
+
+# ALU - 8-bit Arithmetic Logic Unit
 
 A compact 8-bit ALU built from a 2-level carry-lookahead adder, parameterized multiplexers, and combinational logic. Designed for unsigned arithmetic with 8 operations encoded in a single 3-bit select line.
 
-Includes RTL, generic gate-level, ASIC (SkyWater 130nm), and FPGA (Xilinx UltraScale+) synthesis views — all generated from the same source files using an open-source toolchain.
+Includes RTL schematic views - all generated from the vivado toolchain.
 
 ---
 
@@ -12,10 +13,11 @@ Includes RTL, generic gate-level, ASIC (SkyWater 130nm), and FPGA (Xilinx UltraS
 alu8
 ├── mux2to1_param      (selects between b and ~b based on sel[2])
 ├── cla8               (8-bit carry-lookahead adder)
-│   ├── cla4           (lower nibble [3:0] — exports group P, G)
-│   └── cla4           (upper nibble [7:4] — uses group P, G from lower)
+│   ├── cla4           (lower nibble [3:0] - exports group P, G)
+│   └── cla4           (upper nibble [7:4] - uses group P, G from lower)
 └── mux4to1_param      (selects final output based on sel[1:0])
 ```
+<!-- <img src="images/alu_8bit.jpg" alt="Description" style="transform: rotate(90deg); max-width: 100%; height: auto;"> -->
 
 ---
 
@@ -44,7 +46,14 @@ alu8
 | `110` | SUB | `a - b` | Unsigned subtraction; `cout=0` means borrow occurred |
 | `111` | SLT | `a < b ? 1 : 0` | Unsigned set-less-than; `y[0]=1` if `a < b`, `y[7:1]=0` always |
 
-**Note on `cout` semantics:** follows ARM/standard 2's-complement convention — `cout=1` means no borrow (a ≥ b), `cout=0` means borrow occurred (a < b). This is the inverse of x86's carry/borrow flag.
+<img src="images/alu_8bit.jpg" alt="Description" style="
+  max-width: 100%; 
+  height: auto;
+  object-fit: contain; 
+  transform: rotate(90deg);
+">
+
+**Note on `cout` semantics:** follows ARM/standard 2's-complement convention - `cout=1` means no borrow (a ≥ b), `cout=0` means borrow occurred (a < b). This is the inverse of x86's carry/borrow flag.
 
 ---
 
@@ -56,7 +65,7 @@ alu8
 - Controls `mux2to1_param`: selects `b` (sel[2]=0) or `~b` (sel[2]=1) as the adder's second operand
 - Drives `cin` of `cla8`: sets carry-in to 0 (addition) or 1 (subtraction)
 
-This is the standard 2's complement trick — inverting `b` and forcing `cin=1` is mathematically equivalent to `a + (~b + 1) = a - b`. One bit of the select line handles both, with no extra control logic required.
+This is the standard 2's complement trick - inverting `b` and forcing `cin=1` is mathematically equivalent to `a + (~b + 1) = a - b`. One bit of the select line handles both, with no extra control logic required.
 
 A consequence of this encoding is that the opcode space splits cleanly along `sel[2]`:
 
@@ -73,13 +82,24 @@ sel[2]=1  →  SUB-mode group  (AND-NOT, OR-NOT, SUB, SLT)
 assign P = &p;   // group propagate: true when all bits propagate
 assign G = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]);
 ```
+<img src="images/cla4_schem.jpg" alt="Description" style="
+  max-width: 100%; 
+  height: auto;
+  object-fit: contain; 
+  transform: rotate(90deg);
+">
 
 `cla8` uses these to compute the inter-nibble carry directly, without waiting for `cout` of the lower block to ripple:
 
 ```systemverilog
 assign c4_u7to4 = g0 | (p0 & cin);
 ```
-
+<img src="images/cla8_schem2.jpg" alt="Description" style="
+  max-width: 100%; 
+  height: auto;
+  object-fit: contain; 
+  transform: rotate(90deg);
+">
 This is the correct two-level CLA structure. Chaining via raw `cout` and leaving each block's internal `cin` logic untouched would silently break subtraction whenever the lower nibble underflows, because the upper block would re-force its own carry-in instead of accepting the real borrow from below. The group P/G approach avoids this entirely.
 
 ### 3. SLT via ~cout
@@ -97,19 +117,21 @@ The result is gated on `sel[2]` so it only appears in SUB mode:
 result_slt = sel[MSB] ? {{(WIDTH-1){1'b0}}, ~result_cout} : {WIDTH{1'b0}};
 ```
 
-When `sel[2]=0`, this path forces zero — which also gives the CLR behavior for `sel=011`.
+When `sel[2]=0`, this path forces zero - which also gives the CLR behavior for `sel=011`.
 
 ---
 
 ## Toolchain
 
-This design was taken through the full open-source synthesis and schematic flow, from RTL to ASIC-mapped and FPGA-mapped netlists, using only open-source tools.
+This design can be taken through the full open-source synthesis and schematic flow, from RTL to ASIC-mapped and FPGA-mapped netlists, using only open-source tools.
 
-### 1. HDL — SystemVerilog
+### 1. HDL - SystemVerilog
 
 Files written manually: `cla4.sv`, `cla8.sv`, `mux2to1_param.sv`, `mux4to1_param.sv`, `alu8.sv`
 
-### 2. Yosys — Synthesis, Optimization, Netlist Export
+These can be either written in `Vivado` (the primary tool used here), or the open source tool chain (icarus verilog, yosys, etc.)
+
+### 2. Yosys - Synthesis, Optimization, Netlist Export
 
 **RTL schematic (pre-synthesis):**
 ```bash
@@ -147,7 +169,7 @@ yosys -p "
 "
 ```
 
-**FPGA synthesis for UltraScale+ (aup_zu3 target):**
+**FPGA synthesis for UltraScale+ :**
 ```bash
 yosys -p "
   read_verilog -sv cla4.sv cla8.sv mux2to1_param.sv mux4to1_param.sv alu8.sv;
@@ -168,7 +190,7 @@ yosys -p "
 "
 ```
 
-### 3. netlistsvg — Book-style Schematic Rendering
+### 3. netlistsvg - Book-style Schematic Rendering
 
 Converts the Yosys JSON netlist to a clean, readable SVG schematic in the style used by digital design textbooks.
 
@@ -189,9 +211,10 @@ netlistsvg alu8.json -o alu8_schematic.svg
 | Tool | Purpose |
 |---|---|
 | SystemVerilog | HDL source |
+| Vivado | Primary RTL Tool |
 | Yosys | Synthesis, optimization, netlist and schematic export |
 | SkyWater 130nm PDK (`.lib`) | ASIC standard cell library for `abc` technology mapping |
-| `synth_xilinx` | FPGA-targeted synthesis for Xilinx UltraScale+ |
+| `synth_xilinx` | FPGA-targeted synthesis for Xilinx FPGA |
 | netlistsvg | Clean SVG schematic rendering from JSON netlist |
 | npm | Package manager for netlistsvg |
 | Git | Version control |
@@ -204,11 +227,15 @@ Three synthesis views are included, generated at different abstraction levels fr
 
 | File | Generated by | What it shows |
 |---|---|---|
-| `alu8_schematic.svg` | Yosys `show` (pre-synthesis) | RTL structure — module hierarchy visible |
-| `alu8_asic_schematic.svg` | Yosys `synth` + netlistsvg | Generic gate-level (AND/OR/NOT/MUX primitives) |
-| `alu8_fpga_schematic.svg` | `synth_xilinx` | Xilinx LUT-mapped for UltraScale+ fabric |
+| `images/alu8_schematic.svg` | Yosys `show` (pre-synthesis) | RTL structure - module hierarchy visible |
+| `images/alu_8bit.jpg` | Vivado |  |
+| `images/mux2to1.jpg` | Vivado |  |
+| `images/cla8_schem.jpg` | Vivado |  |
+| `images/cla8_schem2.jpg` | Vivado |  |
+| `images/cla4_schem.jpg` | Vivado |  |
+| `images/mux4to1.jpg` | Vivado |  |
 
-**FPGA resource utilization (Xilinx UltraScale+, local to `alu8` excluding submodules):**
+<!-- **FPGA resource utilization (Xilinx UltraScale+, local to `alu8` excluding submodules):**
 
 | Resource | Count |
 |---|---|
@@ -216,7 +243,7 @@ Three synthesis views are included, generated at different abstraction levels fr
 | LUT3 | 1 |
 | **Total (full hierarchy)** | **~25 LUTs** |
 
-Under 0.2% of available resources on the AUP-ZU3 board target.
+Under 0.2% of available resources on the AUP-ZU3 board target. -->
 
 ---
 
@@ -229,14 +256,17 @@ Under 0.2% of available resources on the AUP-ZU3 board target.
 | `cla8.sv` | 8-bit CLA built from two `cla4` instances via group P/G |
 | `mux2to1_param.sv` | Parameterized 2:1 mux (b / ~b selection) |
 | `mux4to1_param.sv` | Parameterized 4:1 mux (final output selection) |
-| `alu8_schematic.svg` | RTL-level schematic (pre-synthesis) |
-| `alu8_asic_schematic.svg` | Generic gate-level schematic |
-| `alu8_fpga_schematic.svg` | Xilinx UltraScale+ LUT-mapped schematic |
+| `images\` | RTL-level schematic images from vivado(pre-synthesis) |
+| `images\alu8_schematic.svg` | RTL-level schematic (pre-synthesis) |
+
+---
 
 **Not tracked in this repo (added to `.gitignore`):**
-- `sky130_fd_sc_hd__tt_025C_1v80.lib` — SkyWater 130nm PDK standard cell library; not original work, too large to track. Download from the [SkyWater PDK repository](https://github.com/google/skywater-pdk) if needed.
-- `synth_alu8.v`, `synth_alu8_xilinx.v` — synthesized netlists generated by Yosys; reproducible from source, not tracked.
-- `alu8.json` — Yosys JSON netlist intermediate; reproducible from source, not tracked.
+
+- `sky130_fd_sc_hd__tt_025C_1v80.lib` - SkyWater 130nm PDK standard cell library; not original work, too large to track. Download from the [SkyWater PDK repository](https://github.com/google/skywater-pdk) if needed.
+- `synth_alu8.v`, `synth_alu8_xilinx.v` - synthesized netlists generated by Yosys; reproducible from source, not tracked.
+- `alu8.json` - Yosys JSON netlist intermediate; reproducible from source, not tracked.
+- `alu8_asic_schematic.svg`, `alu8_fpga_schematic.svg` - Generic gate-level schematic, and Xilinx UltraScale+ LUT-mapped schematic; reproducible from source, not tracked
 
 ---
 
@@ -244,4 +274,4 @@ Under 0.2% of available resources on the AUP-ZU3 board target.
 
 - **No testbench yet.** Priority once written: exhaustive ADD and SUB sweeps across all 256×256 input combinations, SLT boundary conditions (a=b, a=b-1, a=b+1), CLR opcode confirmation.
 - **SLT is unsigned only.** Signed set-less-than requires `y = (N ^ V)` (negative flag XOR overflow flag) rather than `~cout`. A future version with flag outputs would support this naturally.
-- **No N/Z/C/V flag outputs.** Only `cout` is currently exposed. A flag register wrapping this ALU would add N (MSB of result), Z (result==0), C (cout), and V (signed overflow) — straightforward extensions.
+- **No N/Z/C/V flag outputs.** Only `cout` is currently exposed. A flag register wrapping this ALU would add N (MSB of result), Z (result==0), C (cout), and V (signed overflow) - straightforward extensions.
