@@ -50,7 +50,6 @@ alu8
   max-width: 100%; 
   height: auto;
   object-fit: contain; 
-  transform: rotate(90deg);
 ">
 
 **Note on `cout` semantics:** follows ARM/standard 2's-complement convention - `cout=1` means no borrow (a ≥ b), `cout=0` means borrow occurred (a < b). This is the inverse of x86's carry/borrow flag.
